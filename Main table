@@ -1,0 +1,24 @@
+| Language | Level        | Project / Task Title                  | Key Concepts Practiced            | Testability Focus                                    |
+| -------- | ------------ | ------------------------------------- | --------------------------------- | ---------------------------------------------------- |
+| C        | Basic        | Prime Number Checker                  | Loops, conditionals, modularity   | Input a number → check if it’s prime                 |
+| C        | Basic        | Fibonacci Sequence Generator          | Loops, recursion                  | Generate first `n` numbers                           |
+| C        | Intermediate | Student Marks Management              | Arrays, structs, file I/O         | Add/view marks, calculate averages                   |
+| C        | Intermediate | Matrix Multiplication                 | 2D arrays, nested loops           | Multiply two input matrices                          |
+| C        | Advanced     | Bank Management System (CLI)          | File I/O, structs, menu systems   | Simulate deposit, withdrawal, balance check          |
+| C++      | Basic        | Simple Calculator (OOP)               | Classes, switch-case              | Perform +, –, ×, ÷ using class methods               |
+| C++      | Intermediate | Library Management System             | Classes, vectors, file I/O        | Add/remove/search books, persist data                |
+| C++      | Intermediate | Inheritance & Polymorphism Demo       | OOP, virtual functions            | Create base/derived classes, override methods        |
+| C++      | Advanced     | Mini Compiler (Token Parser)          | File I/O, string parsing          | Read code file → tokenize keywords/operators         |
+| C++      | Advanced     | File Encryption/Decryption Tool       | File handling, bitwise operations | Encrypt text file → decrypt and compare result       |
+| Python   | Basic        | Palindrome & Anagram Checker          | Strings, functions                | Check if input string is palindrome or anagram       |
+| Python   | Basic        | Temperature Converter CLI             | Input/output, math                | Convert between Celsius, Fahrenheit, Kelvin          |
+| Python   | Intermediate | To-Do List App (CLI)                  | Lists, file I/O, JSON             | Add/delete/view tasks, store in JSON                 |
+| Python   | Intermediate | Contact Book (with CSV)               | Dictionaries, CSV handling        | CRUD operations on contact list stored in CSV        |
+| Python   | Advanced     | Web Scraper (BeautifulSoup)           | Web requests, HTML parsing        | Extract data (e.g., headlines) from a webpage        |
+| Python   | Advanced     | Expense Tracker with Charts           | Pandas, matplotlib                | Read CSV, summarize expenses, generate pie/bar chart |
+| Java     | Basic        | Number Pattern Printer                | Loops, formatting                 | Print various number/character patterns              |
+| Java     | Basic        | Armstrong Number Checker              | Math, loops                       | Check if a number is Armstrong                       |
+| Java     | Intermediate | Student Management System (with JDBC) | OOP, JDBC, SQL                    | CRUD operations in a database                        |
+| Java     | Intermediate | File Reader & Word Counter            | File I/O, string processing       | Read a text file, count total words                  |
+| Java     | Advanced     | Simple Chat App (Sockets)             | Networking, threads               | Run two instances and send messages between users    |
+| Java     | Advanced     | GUI Login System (Swing)              | GUI (Swing), events, DB/file      | Register/login, validate against stored credentials  |
