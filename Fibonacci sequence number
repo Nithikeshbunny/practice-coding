@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+int main() {
+    int n, i;
+    int a = 0;  // First Fibonacci number
+    int b = 1;  // Second Fibonacci number
+    int next;   // To store the next Fibonacci number
+
+    printf("Enter the number of terms for the Fibonacci sequence: ");
+    scanf("%d", &n);
+
+    if (n <= 0) {
+        printf("Error: Please enter a positive integer greater than 0.\n");
+        return 1;  // Exit with an error code
+    }
+
+    printf("Fibonacci Sequence: ");
+
+    if (n >= 1) {
+        printf("%d", a);  // Print the first term
+    }
+
+    for (i = 2; i <= n; i++) {
+        if (i == 2) {
+            printf(", %d", b);  // Print the second term
+        } else {
+            next = a + b;  // Calculate the next term
+            printf(", %d", next);
+            a = b;  // Update a to the previous b
+            b = next;  // Update b to the current next
+        }
+    }
+
+    printf("\n");  // New line for better formatting
+    return 0;
+}
