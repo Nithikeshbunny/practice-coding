@@ -1,0 +1,120 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <cctype>
+
+using namespace std;
+
+// Token types
+enum TokenType {
+    KEYWORD, IDENTIFIER, NUMBER, OPERATOR, PUNCTUATION, END_OF_FILE, UNKNOWN
+};
+
+// Token structure
+struct Token {
+    TokenType type;
+    string value;
+};
+
+// Keywords list
+vector<string> keywords = {"if", "else", "while", "for", "int", "float", "return"};
+
+// Function to check if a string is a keyword
+bool isKeyword(const string& str) {
+    for (const auto& kw : keywords) {
+        if (str == kw) return true;
+    }
+    return false;
+}
+
+// Lexer function
+vector<Token> tokenize(const string& input) {
+    vector<Token> tokens;
+    size_t i = 0;
+    while (i < input.length()) {
+        char ch = input[i];
+        
+        // Skip whitespace
+        if (isspace(ch)) {
+            i++;
+            continue;
+        }
+        
+        // Numbers
+        if (isdigit(ch)) {
+            string num;
+            while (i < input.length() && isdigit(input[i])) {
+                num += input[i++];
+            }
+            tokens.push_back({NUMBER, num});
+            continue;
+        }
+        
+        // Identifiers or keywords
+        if (isalpha(ch) || ch == '_') {
+            string id;
+            while (i < input.length() && (isalnum(input[i]) || input[i] == '_')) {
+                id += input[i++];
+            }
+            if (isKeyword(id)) {
+                tokens.push_back({KEYWORD, id});
+            } else {
+                tokens.push_back({IDENTIFIER, id});
+            }
+            continue;
+        }
+        
+        // Operators
+        if (ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '=' || ch == '>' || ch == '<' || ch == '!') {
+            string op(1, ch);
+            i++;
+            if (i < input.length() && (input[i] == '=' || (ch == '!' && input[i] == '='))) {
+                op += input[i++];
+            }
+            tokens.push_back({OPERATOR, op});
+            continue;
+        }
+        
+        // Punctuation
+        if (ch == ';' || ch == '(' || ch == ')' || ch == '{' || ch == '}' || ch == ',') {
+            tokens.push_back({PUNCTUATION, string(1, ch)});
+            i++;
+            continue;
+        }
+        
+        // Unknown
+        tokens.push_back({UNKNOWN, string(1, ch)});
+        i++;
+    }
+    
+    tokens.push_back({END_OF_FILE, ""});
+    return tokens;
+}
+
+// Function to print tokens
+void printTokens(const vector<Token>& tokens) {
+    for (const auto& token : tokens) {
+        string typeStr;
+        switch (token.type) {
+            case KEYWORD: typeStr = "KEYWORD"; break;
+            case IDENTIFIER: typeStr = "IDENTIFIER"; break;
+            case NUMBER: typeStr = "NUMBER"; break;
+            case OPERATOR: typeStr = "OPERATOR"; break;
+            case PUNCTUATION: typeStr = "PUNCTUATION"; break;
+            case END_OF_FILE: typeStr = "END_OF_FILE"; break;
+            case UNKNOWN: typeStr = "UNKNOWN"; break;
+        }
+        cout << typeStr << ": " << token.value << endl;
+    }
+}
+
+int main() {
+    string input;
+    cout << "Enter code to tokenize: ";
+    getline(cin, input);
+    
+    vector<Token> tokens = tokenize(input);
+    printTokens(tokens);
+    
+    return 0;
+}
