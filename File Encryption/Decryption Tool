@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Function to encrypt/decrypt using XOR
+void processFile(const char* inputFile, const char* outputFile, const char* key) {
+    FILE* inFile = fopen(inputFile, "rb");
+    FILE* outFile = fopen(outputFile, "wb");
+    
+    if (!inFile) {
+        printf("Error opening input file.\n");
+        return;
+    }
+    if (!outFile) {
+        printf("Error opening output file.\n");
+        fclose(inFile);
+        return;
+    }
+    
+    int ch;
+    size_t keyLen = strlen(key);
+    size_t keyIndex = 0;
+    while ((ch = fgetc(inFile)) != EOF) {
+        char encrypted = ch ^ key[keyIndex];
+        fputc(encrypted, outFile);
+        keyIndex = (keyIndex + 1) % keyLen;
+    }
+    
+    fclose(inFile);
+    fclose(outFile);
+    printf("File processed successfully.\n");
+}
+
+int main() {
+    char inputFile[256], outputFile[256], key[256];
+    int choice;
+    
+    printf("File Encryption/Decryption Tool\n");
+    printf("1. Encrypt\n");
+    printf("2. Decrypt\n");
+    printf("Enter choice: ");
+    scanf("%d", &choice);
+    getchar(); // Consume newline
+    
+    printf("Enter input file path: ");
+    fgets(inputFile, sizeof(inputFile), stdin);
+    inputFile[strcspn(inputFile, "\n")] = 0; // Remove newline
+    
+    printf("Enter output file path: ");
+    fgets(outputFile, sizeof(outputFile), stdin);
+    outputFile[strcspn(outputFile, "\n")] = 0;
+    
+    printf("Enter key: ");
+    fgets(key, sizeof(key), stdin);
+    key[strcspn(key, "\n")] = 0;
+    
+    if (choice == 1) {
+        processFile(inputFile, outputFile, key);
+        printf("Encryption complete.\n");
+    } else if (choice == 2) {
+        processFile(inputFile, outputFile, key);
+        printf("Decryption complete.\n");
+    } else {
+        printf("Invalid choice.\n");
+    }
+    
+    return 0;
+}
