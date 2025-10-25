@@ -1,0 +1,47 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Base class
+class Animal {
+public:
+    virtual void speak() {  // Virtual for polymorphism
+        cout << "Animal makes a sound." << endl;
+    }
+    virtual ~Animal() {}  // Virtual destructor
+};
+
+// Derived class 1
+class Dog : public Animal {
+public:
+    void speak() override {
+        cout << "Dog barks: Woof!" << endl;
+    }
+};
+
+// Derived class 2
+class Cat : public Animal {
+public:
+    void speak() override {
+        cout << "Cat meows: Meow!" << endl;
+    }
+};
+
+int main() {
+    // Create objects
+    Dog dog;
+    Cat cat;
+    
+    // Vector of base class pointers for polymorphism
+    vector<Animal*> animals;
+    animals.push_back(&dog);
+    animals.push_back(&cat);
+    
+    // Demonstrate polymorphism: calls overridden methods
+    for (auto animal : animals) {
+        animal->speak();
+    }
+    
+    return 0;
+}
